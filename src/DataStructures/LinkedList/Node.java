@@ -3,13 +3,22 @@ package DataStructures.LinkedList;
 public class Node <T> {
     private T value;
     private Node next;
+    private Node prev;
 
     public Node getNext() {
         return next;
     }
 
+    public Node getPrev(){
+        return prev;
+    }
+
     public void setNext(Node next) {
         this.next = next;
+    }
+
+    public void setPrev(Node element){
+        this.prev = element;
     }
 
     public Node (T value){
@@ -17,7 +26,6 @@ public class Node <T> {
     }
 
     public Node () {
-
     }
 
     public T getValue() {
@@ -29,7 +37,10 @@ public class Node <T> {
     }
 
     public boolean hasNext() {
-        if(this.getNext()!=null) return true;
-        return false;
+        return this.getNext()!=null;
+    }
+
+    public boolean hasPrev() {
+        return this.getPrev()!=null;
     }
 }
