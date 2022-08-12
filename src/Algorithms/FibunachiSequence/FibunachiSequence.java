@@ -4,18 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FibunachiSequence {
+
     static Map map = new HashMap();
-
-    public static int FBSubtractionBackwards(int num){
-        if(num>=3) {
-            return FBSubtractionBackwards(num-1) + FBSubtractionBackwards(num-2);
-        }
-        return 1;
-    }
-
-    public static int FBMultiForward(int num){
-        return num*(num-1);
-    }
 
     public static long FBAdditionForward(int num){
         if(num<=1) {
