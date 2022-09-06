@@ -2,6 +2,7 @@ package DataStructures.Graphs;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class UndirectedGraphLinkedListImpl {
 
@@ -51,6 +52,27 @@ public class UndirectedGraphLinkedListImpl {
         }
     }
 
+    public void dfs (int start){
+        boolean[] visited = new boolean[vertices];
+        Stack<Integer> stack = new Stack<>();
+        stack.push(start);
+        while (!stack.empty()){
+            int curr = stack.pop();
+
+            if(!visited[curr]) {
+                visited[curr]=true;
+                System.out.println(curr);
+
+                for (int i = 0; i < list[curr].size(); i++) {
+                    int currNode = list[curr].get(i);
+                    if (!visited[currNode]) {
+                        stack.push(currNode);
+                    }
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         UndirectedGraphLinkedListImpl graphLinkedList = new UndirectedGraphLinkedListImpl(5);
         graphLinkedList.addEdge(0,1);
@@ -59,7 +81,7 @@ public class UndirectedGraphLinkedListImpl {
         graphLinkedList.addEdge(3,0);
         graphLinkedList.addEdge(2,4);
         System.out.println(graphLinkedList);
-        graphLinkedList.bfs(0);
+        graphLinkedList.dfs(0);
     }
 
 }
