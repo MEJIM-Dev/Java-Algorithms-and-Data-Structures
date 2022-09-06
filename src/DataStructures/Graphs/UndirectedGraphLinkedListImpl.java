@@ -73,6 +73,25 @@ public class UndirectedGraphLinkedListImpl {
         }
     }
 
+    public void dfs(){
+        boolean[] visited = new boolean[vertices]; 
+        for (int i = 0; i < vertices; i++) {
+            dfs(i,visited);
+        }
+    }
+
+    public void dfs(int point, boolean[] visited){
+        if(!visited[point]){
+            visited[point]=true;
+            System.out.println(point+ " ");
+            for (int i = 0; i < list[point].size(); i++) {
+                if(!visited[point]){
+                    dfs(i,visited);
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         UndirectedGraphLinkedListImpl graphLinkedList = new UndirectedGraphLinkedListImpl(5);
         graphLinkedList.addEdge(0,1);
@@ -81,7 +100,8 @@ public class UndirectedGraphLinkedListImpl {
         graphLinkedList.addEdge(3,0);
         graphLinkedList.addEdge(2,4);
         System.out.println(graphLinkedList);
-        graphLinkedList.dfs(0);
+//        graphLinkedList.dfs(0);
+        graphLinkedList.dfs();
     }
 
 }
