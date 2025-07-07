@@ -4,32 +4,38 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Math.abs;
+
 public class FirstMissingPositive {
 
     // Method to solve the First Missing Positive problem (you will write this)
     public int firstMissingPositive(int[] nums) {
         // Your O(n) time and O(1) auxiliary space solution goes here
 
-        int[] possibleOutComes = new int[nums.length];
+        int n = nums.length;
 
-        for (int i = 0; i < nums.length; i++) {
-            int currentValue = nums[i];
-            //Positive check
-            if(currentValue>0) {
-                //smaller check
-                if(currentValue-1 >= 0 && currentValue-1 < nums.length){
-                    possibleOutComes[currentValue-1] = 1;
+        for (int i = 0; i < n; i++) {
+            if(nums[i]<0 || nums[i]>n){
+                nums[i]=0;
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            if(abs(nums[i]) > 0){
+                int presentIndex = abs(nums[i])-1;
+                if(nums[presentIndex]>0){
+                    nums[presentIndex] = -nums[presentIndex];
                 }
             }
         }
 
-        for (int i = 0; i < possibleOutComes.length; i++) {
-            if(possibleOutComes[i]==0){
+        for (int i = 0; i < n; i++) {
+            if(!nums[i]>0){
                 return i+1;
             }
         }
 
-        return nums.length+1;
+        return n + 1;
     }
 
     public static void main(String[] args) {
