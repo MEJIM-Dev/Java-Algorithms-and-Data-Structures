@@ -30,7 +30,7 @@ public class FirstMissingPositive {
         }
 
         for (int i = 0; i < n; i++) {
-            if(!nums[i]>0){
+            if(!(nums[i]>0)){
                 return i+1;
             }
         }
